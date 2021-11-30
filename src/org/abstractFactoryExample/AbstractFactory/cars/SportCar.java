@@ -1,13 +1,13 @@
 package org.abstractFactoryExample.AbstractFactory.cars;
 
-import org.abstractFactoryExample.AbstractFactory.Factories.AbstractCarFactory;
+import org.abstractFactoryExample.AbstractFactory.factories.PartsFactory;
 
 public class SportCar extends Car{
-    AbstractCarFactory factory;
+    PartsFactory factory;
+    final CarType carType = CarType.SPORT_CAR;
 
-    public SportCar(AbstractCarFactory factory) {
+    public SportCar(PartsFactory factory) {
         this.factory = factory;
-        this.setModel("Audi RS6");
     }
 
     @Override
@@ -15,20 +15,20 @@ public class SportCar extends Car{
         System.out.println("The factory has took your order and started to create parts for your future car.");
 
         Thread.sleep(1000);
-        engine = factory.createEngine();
+        engine = factory.createEngine(carType);
         System.out.println("Engine was created: " + engine.toString());
 
         Thread.sleep(1000);
-        suspension = factory.createSuspension();
+        suspension = factory.createSuspension(carType);
         System.out.println("Suspension was created: " + suspension.toString());
 
         Thread.sleep(1000);
-        body = factory.createBody();
+        body = factory.createBody(carType);
         System.out.println("Body was created: " + body.toString());
 
 
         Thread.sleep(1000);
-        transmission = factory.createTransmission();
+        transmission = factory.createTransmission(carType);
         System.out.println("Transmission was created: " + transmission.toString());
 
         Thread.sleep(1000);
